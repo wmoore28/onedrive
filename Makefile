@@ -31,7 +31,7 @@ install: all
 	cp -raf *.service $(DESTDIR)/usr/lib/systemd/system/
 	chmod 0644 $(DESTDIR)/usr/lib/systemd/system/onedrive*.service
 	
-onedrive: version $(SOURCES)
+onedrive: $(SOURCES)
 	$(DC) $(DFLAGS) $(SOURCES)
 
 onedrive.service:
@@ -44,5 +44,3 @@ uninstall:
 	rm -f $(DESTDIR)/usr/lib/systemd/system/onedrive@.service
 	rm -f $(DESTDIR)/etc/logrotate.d/onedrive
 
-version: .git/HEAD .git/index
-	echo $(shell git describe --tags) >version
