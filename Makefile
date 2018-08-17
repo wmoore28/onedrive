@@ -34,7 +34,7 @@ install: all
 	chown root.root /etc/sudoers.d/onedrive
 	chmod 0440 /etc/sudoers.d/onedrive
 
-onedrive: $(SOURCES)
+onedrive: version $(SOURCES)
 	$(DC) $(DFLAGS) $(SOURCES)
 
 onedrive.service:
@@ -48,3 +48,6 @@ uninstall:
 	rm -f $(DESTDIR)/etc/logrotate.d/onedrive
 	rm -f /etc/sudoers.d/onedrive
 
+version: .git/HEAD .git/index
+	rm -f version
+	echo $(shell git describe --tags) >version
