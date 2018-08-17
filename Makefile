@@ -30,6 +30,9 @@ install: all
 	install -D -m 644 logrotate/onedrive.logrotate $(DESTDIR)/etc/logrotate.d/onedrive
 	cp -raf *.service $(DESTDIR)/etc/systemd/system/
 	chmod 0644 $(DESTDIR)/etc/systemd/system/onedrive*.service
+	cp -af sudoers.d/onedrive /etc/sudoers.d/onedrive
+	chown root.root /etc/sudoers.d/onedrive
+	chmod 0440 /etc/sudoers.d/onedrive
 
 onedrive: $(SOURCES)
 	$(DC) $(DFLAGS) $(SOURCES)
@@ -43,4 +46,5 @@ uninstall:
 	rm -f $(DESTDIR)/etc/systemd/system/onedrive.service
 	rm -f $(DESTDIR)/etc/systemd/system/onedrive@.service
 	rm -f $(DESTDIR)/etc/logrotate.d/onedrive
+	rm -f /etc/sudoers.d/onedrive
 

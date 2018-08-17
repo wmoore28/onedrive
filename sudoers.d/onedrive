@@ -1,0 +1,5 @@
+Cmnd_Alias ONEDRIVE=/usr/bin/systemctl start onedrive@*, \
+                    /usr/bin/systemctl stop onedrive@*, \
+                    /usr/bin/systemctl restart onedrive@*, \
+                    /usr/bin/systemctl status onedrive@*
+ALL ALL=(ALL) NOPASSWD: ONEDRIVE
